@@ -1,3 +1,11 @@
+
+/* ******************************************
+ * This server.js file is the primary file of the 
+ * application. It is used to control the project.
+ *******************************************/
+/* ***********************
+ * Require Statements
+ *************************/
 const express = require("express");
 const path = require("path");
 const expressLayouts = require("express-ejs-layouts");
@@ -7,6 +15,9 @@ require("dotenv").config();
 
 const app = express();
 
+/* ***********************
+ * View Engine and Templates
+ *************************/
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(expressLayouts);
@@ -45,6 +56,10 @@ app.get("/", (req, res) => {
 const inventoryRoute = require("./routes/inventoryRoute");
 app.use("/inv", inventoryRoute);
 
+/* ***********************
+* Express Error Handler
+* Place all non-error middleware before this one
+*************************/
 app.use((req, res, next) => {
   const err = new Error("Not Found");
   err.status = 404;
