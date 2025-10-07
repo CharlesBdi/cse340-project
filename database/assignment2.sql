@@ -289,20 +289,25 @@ SET
     inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
     inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
 
-ALTER TYPE account_type_enum ADD VALUE IF NOT EXISTS 'Employee';
-ALTER TYPE account_type_enum ADD VALUE IF NOT EXISTS 'Client';
 
---Assignment5
+
+
+--week05 Assigment
+
+
+ALTER TYPE account_type ADD VALUE IF NOT EXISTS 'Employee';
+ALTER TYPE account_type ADD VALUE IF NOT EXISTS 'Client';
+
 
 DO $$
 BEGIN
   BEGIN
-    ALTER TYPE account_type_enum ADD VALUE 'Employee';
+    ALTER TYPE account_type ADD VALUE 'Employee';
   EXCEPTION WHEN duplicate_object THEN NULL;
   END;
 
   BEGIN
-    ALTER TYPE account_type_enum ADD VALUE 'Client';
+    ALTER TYPE account_type ADD VALUE 'Client';
   EXCEPTION WHEN duplicate_object THEN NULL;
   END;
 END $$;
